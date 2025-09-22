@@ -75,6 +75,9 @@ def search_files():
             if choice == "QUIT_SIGNAL" or choice == "3":
                 return []
             elif choice == "1":
+                if len(results) == 0:
+                    print("\n No path found")
+                else:
                 return results
             elif choice == "2":
                 break
@@ -95,3 +98,4 @@ def get_file_info(path_obj: Path) -> Dict[str, object]:
         "created": datetime.fromtimestamp(stats.st_ctime).strftime("%Y-%m-%d %H:%M:%S"),
         "modified": datetime.fromtimestamp(stats.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
     }
+
