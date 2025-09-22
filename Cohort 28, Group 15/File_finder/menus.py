@@ -76,7 +76,8 @@ def main_menu() -> None:
 
         choice = safe_input("Choose an option: ")
         if choice == "QUIT_SIGNAL":
-            continue
+            print(" Goodbye! ")
+            break
 
         try:
             choice = int(choice)
@@ -214,3 +215,4 @@ def edit_settings_menu() -> None:
 
         else:
             print("⚠️ Invalid menu choice! Please select 1–4.")
+
