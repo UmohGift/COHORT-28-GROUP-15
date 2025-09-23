@@ -2,9 +2,9 @@ from typing import List, Dict
 from config import config, set_root_path, toggle_case_sensitive, set_display_size
 from search import search_files
 
-# -------------------------------
-# quit handling input
-# -------------------------------
+
+#                                     Quit handling input function
+
 
 
 def safe_input(prompt: str) -> str:
@@ -16,9 +16,9 @@ def safe_input(prompt: str) -> str:
         return "QUIT_SIGNAL"
     return user_input
 
-# -------------------------------
-# Results display
-# -------------------------------
+
+#                                         Results display function
+
 
 
 def display_results(results: List[Dict[str, object]]) -> None:
@@ -42,7 +42,7 @@ def display_results(results: List[Dict[str, object]]) -> None:
             print(f"   Modified: {item['modified']}")
             print(f"   Directory: {item['is_directory']}\n")
 
-        # pagination menu
+        #                                   pagination menu code
         print("Options: ")
         if end < len(results):
             print("N. Next page")
@@ -60,9 +60,8 @@ def display_results(results: List[Dict[str, object]]) -> None:
         else:
             print("Invalid option.")
 
-# -------------------------------
-# Main Menu
-# -------------------------------
+
+#                                             Main Menu
 
 
 def main_menu() -> None:
@@ -82,7 +81,7 @@ def main_menu() -> None:
         try:
             choice = int(choice)
         except ValueError:
-            print("⚠️Invalid input! Enter a number.")
+            print("⚠️ Invalid input! Enter a number.")
             continue
 
         if choice == 1:
@@ -100,11 +99,11 @@ def main_menu() -> None:
             print("Goodbye!")
             break
         else:
-            print("⚠️Invalid choice.\nPlease select a number from the ones provided")
+            print("⚠️  Invalid choice.\nPlease select a number from the ones provided")
 
-# -------------------------------
-# View Settings Menu
-# -------------------------------
+
+#                                          View Settings Menu
+# 
 
 
 def view_settings_menu() -> None:
@@ -140,9 +139,9 @@ def view_settings_menu() -> None:
         else:
             print("⚠️ Invalid menu choice! Please select 1–4.")
 
-# -------------------------------
-# Edit Settings Menu
-# -------------------------------
+
+#                                       Edit Settings Menu
+
 def edit_settings_menu() -> None:
     """Menu for editing settings"""
     while True:
@@ -169,7 +168,7 @@ def edit_settings_menu() -> None:
                 if new_path == "QUIT_SIGNAL":
                     break
                 from pathlib import Path
-                path = Path(new_path)
+                path = Path(new_path) 
                 if path.exists() and path.is_dir():
                     set_root_path(new_path)
                     print(f"\n✔️ Root Path updated successfully!")

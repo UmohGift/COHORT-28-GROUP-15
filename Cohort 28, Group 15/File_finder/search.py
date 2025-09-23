@@ -4,9 +4,7 @@ from datetime import datetime
 from typing import Dict, List
 from config import config
 
-# -------------------------------
-# Safe input with quit handling
-# -------------------------------
+#                                       Quit handling input function
 
 
 def safe_input(prompt: str) -> str:
@@ -18,9 +16,10 @@ def safe_input(prompt: str) -> str:
         return "QUIT_SIGNAL"
     return user_input
 
-# -------------------------------
-# Search function
-# -------------------------------
+
+#                                            Search function
+
+
 def search_files():
     """
     Start a search loop:
@@ -32,7 +31,7 @@ def search_files():
     while True:
         query = safe_input("\nEnter file or folder name: ")
         if query == "QUIT_SIGNAL":
-            return []  # back to main menu
+            return [] 
 
         print("\n⌚ Searches take approximately 5 - 10mins ⌚")
         print("Enjoy some tea 🍵🫖 while you wait...\n")
@@ -44,14 +43,13 @@ def search_files():
         query_cmp = query if config["case_sensitive"] else query.lower()
 
         for dirpath, dir_names, filenames in os.walk(root):
-            # check directories
             for d in dir_names:
                 name_cmp = d if config["case_sensitive"] else d.lower()
                 if query_cmp in name_cmp:
                     path_obj = Path(dirpath) / d
                     results.append(get_file_info(path_obj))
 
-            # check files
+
             for f in filenames:
                 name_cmp = f if config["case_sensitive"] else f.lower()
                 if query_cmp in name_cmp:
@@ -84,9 +82,9 @@ def search_files():
             else:
                 print("Invalid option. Please choose 1, 2, or 3.")
 
-# -------------------------------
-# File info helper
-# -------------------------------
+
+#                                               File info helper
+
 
 
 def get_file_info(path_obj: Path) -> Dict[str, object]:

@@ -3,7 +3,7 @@ from typing import Dict
 
 # dictionary
 config: Dict[str, object] = {
-    "root_path": str(Path.home() ),  # default = user's Documents
+    "root_path": str(Path.home() ), 
     "case_sensitive": True,
     "display_size": 10
 }
