@@ -78,7 +78,7 @@ def search_files():
                 if len(results) == 0:
                     print("\n No path found")
                 else:
-                return results
+                    return results
             elif choice == "2":
                 break
             else:
