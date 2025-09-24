@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List
-from config import config
+from configuration import config
 
 #                                       Quit handling input function
 

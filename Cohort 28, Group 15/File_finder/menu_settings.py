@@ -1,6 +1,6 @@
 from typing import List, Dict
-from config import config, set_root_path, toggle_case_sensitive, set_display_size
-from search import search_files
+from configuration import config, set_root_path, toggle_case_sensitive, set_display_size
+from finder_tool import search_files
 
 
 #                                     Quit handling input function
@@ -31,12 +31,10 @@ def display_results(results: List[Dict[str, object]]) -> None:
     per_page = config["display_size"]
 
     while True:
-        start = page * per_page
-        end = start + per_page
-        subset = results[start:end]
+        subset = results[page * per_page : (page + 1) * per_page]
 
         print(f"\n--- Results Page {page+1} ---")
-        for i, item in enumerate(subset, start + 1):
+        for i, item in enumerate(subset, start = page * per_page + 1):
             print(f"{i}. {item['path']}")
             print(f"   Created: {item['created']}")
             print(f"   Modified: {item['modified']}")
@@ -44,7 +42,7 @@ def display_results(results: List[Dict[str, object]]) -> None:
 
         #                                   pagination menu code
         print("Options: ")
-        if end < len(results):
+        if (page + 1) * per_page < len(results):
             print("N. Next page")
         if page > 0:
             print("P. Previous page")
@@ -53,12 +51,12 @@ def display_results(results: List[Dict[str, object]]) -> None:
         choice = safe_input("Enter choice: ")
         if choice == "QUIT_SIGNAL" or choice.lower() == "m":
             return
-        elif choice.lower() == "n" and end < len(results):
+        elif choice.lower() == "n" and (page + 1) * per_page < len(results):
             page += 1
         elif choice.lower() == "p" and page > 0:
             page -= 1
         else:
-            print("Invalid option.")
+            print("Invalid option. Try again")
 
 
 #                                             Main Menu
