@@ -147,8 +147,8 @@ def edit_settings_menu() -> None:
     while True:
         print("\n--- Edit Settings ---\nSelect from the following menu")
         print("1. Change Root Path")
-        print("2. Toggle Case Sensitivity")
-        print("3. Change Display Size")
+        print("2. Change Display Size")
+        print("3. Toggle Case Sensitivity")
         print("4. Back to Main Menu")
 
         choice = safe_input("Choose an option: ")
@@ -161,7 +161,7 @@ def edit_settings_menu() -> None:
             print("⚠️ Invalid menu choice! Please enter a number 1–4.")
             continue
 
-        if choice == 1:  # Change root path
+        if choice == 1:  
             print(f"\nCurrent Root Path: {config['root_path']}")
             while True:
                 new_path = safe_input("Enter new root path: ")
@@ -177,21 +177,7 @@ def edit_settings_menu() -> None:
                 else:
                     print("⚠️ Invalid input! That path does not exist or is not a directory. Try again.")
 
-        elif choice == 2:  # Case sensitivity with yes/no option
-            print(f"\nCase Sensitive (current): {config['case_sensitive']}")
-            confirm = safe_input("Do you want to change this? (y/n): ")
-            if confirm == "QUIT_SIGNAL":
-                continue
-            if confirm.lower() in ("y", "yes"):
-                toggle_case_sensitive()
-                print(f"\n✔️ Case Sensitivity updated successfully!")
-                print(f"   Case Sensitive (new): {config['case_sensitive']}")
-            elif confirm.lower() in ("n", "no"):
-                print("\nNo changes made to Case Sensitivity.")
-            else:
-                print("⚠️ Invalid input! Please type 'y' or 'n'.")
-
-        elif choice == 3:  # Change display size
+        elif choice == 2:  
             print(f"\nCurrent Display Size: {config['display_size']}")
             while True:
                 size = safe_input("Enter new display size (3-20): ")
@@ -208,6 +194,33 @@ def edit_settings_menu() -> None:
                         print("⚠️ Invalid input! Display size must be between 3 and 20.")
                 except ValueError:
                     print("⚠️ Invalid input! Please enter a valid number.")
+
+        elif choice == 3: 
+            print(f"\nCase Sensitive (current): {config['case_sensitive']}")
+            while True:
+                print("Do you want to change this?")
+                print("1. Yes")
+                print("2. No")
+
+                confirm = safe_input("Choose an option: ")
+                if confirm == "QUIT_SIGNAL":
+                    break
+                try:
+                    confirm = int(confirm)
+                except ValueError:
+                    print("⚠️ Invalid input! Please enter 1 or 2.")
+                    continue
+
+                if confirm == 1:
+                    toggle_case_sensitive()
+                    print(f"\n✔️ Case Sensitivity updated successfully!")
+                    print(f"   Case Sensitive (new): {config['case_sensitive']}")
+                    break
+                elif confirm == 2:
+                    print("\nNo changes made to Case Sensitivity.")
+                    break
+                else:
+                    print("⚠️ Invalid menu choice! Please enter 1 or 2.")
 
         elif choice == 4:
             return
