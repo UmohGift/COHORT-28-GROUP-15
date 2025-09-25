@@ -1,6 +1,6 @@
 from typing import List, Dict
 from configuration import config, set_root_path, toggle_case_sensitive, set_display_size
-from finder_tool import search_files
+from search import search_files
 
 
 #                                     Quit handling input function
