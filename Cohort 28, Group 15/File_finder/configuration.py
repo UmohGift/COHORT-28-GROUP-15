@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Dict
 
-# dictionary
+
 config: Dict[str, object] = {
-    "root_path": str(Path.home() ), 
+    "root_path": str(Path.home() / "Documents" ), 
     "case_sensitive": True,
     "display_size": 10
 }
