@@ -65,7 +65,7 @@ def display_results(results: List[Dict[str, object]]) -> None:
 def main_menu() -> None:
     """Main interactive loop"""
     while True:
-        print("\n=== File Finder Main Menu ===")
+        print("\n=== Welcome to the File Finder ===\n== File Finder Main Menu ==")
         print("1. Search for a File/Folder")
         print("2. View Current Settings")
         print("3. Edit Settings")
